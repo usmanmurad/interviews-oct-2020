@@ -23,7 +23,21 @@ class BookWithReviews {
  * @returns {Array} - an array of BookWithReviews objects
  */
 export function parseBooksData(books, reviews) {
-  return [];  // TODO: Implement
+  var obj=new BookWithReviews[books.length];
+  for(var i=0;i<books.length;i++)
+  {
+    obj[i].id=books[i].id;
+    obj[i].title=books[i].title;
+    for(var j=0;j<reviews.length;j++)
+    {
+      if(reviews.id==books[i].id)
+      {
+        obj[i].reviews=reviews;
+        break;
+      }
+    }
+  }
+  return obj;
 }
 
 /**
@@ -42,5 +56,14 @@ export function parseBooksData(books, reviews) {
  * @param books - an array of BookWithReviews objects.
  */
 export function displayBooks(parentNode, books) {
-  // TODO: Implement
+  for(var i=0;i<books.length;i++)
+  {
+    var id=books[i].id;
+    var title=books[i].title;
+    var author=books[i].reviews.author;
+    var content=books[i].reviews.content;
+    var d1=document.createElement("div");
+    d1.innerHTML="ID:"+id+"</br>Title:"+title+"</br>Author:"+author+"</br>Content:"+content+"</br>....................";
+    parentNode.appendChild(d1);
+  }
 }
